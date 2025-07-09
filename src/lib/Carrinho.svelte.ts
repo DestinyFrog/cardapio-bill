@@ -1,2 +1,1 @@
-
-export const carrinho = $state([])
+export const carrinho = $state([]);
