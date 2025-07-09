@@ -34,7 +34,8 @@ const cardapio = {
 			id: 6,
 			nome: "Coca Cola",
 			valor: 8,
-			tipo: "bebida"
+			tipo: "bebida",
+			imagem: "coca_cola.jpg"
 		},
 		{
 			id: 7,
@@ -81,17 +82,20 @@ const cardapio = {
 	]
 };
 
+export interface Prato {
+	id: number;
+	nome: string;
+	valor: number;
+	tipo: string;
+	imagem?: string;
+}
+
 export interface TipoPrato {
 	id: number;
 	tipo: string;
 	titulo: string;
 	imagem?: string;
-	pratos: {
-		id: number;
-		nome: string;
-		valor: number;
-		tipo: string;
-	}[];
+	pratos: Prato[];
 }
 
 export async function getCardapio(): Promise<TipoPrato[]> {

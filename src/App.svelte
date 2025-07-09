@@ -2,11 +2,11 @@
 	import Cardapio from "./lib/Cardapio.svelte";
 	import Carrinho from "./lib/Carrinho.svelte";
 
-	let tela: "cardapio" | "carrinho" = "cardapio";
+	let tela: "cardapio" | "carrinho" = "carrinho";
 </script>
 
 <header>
-	<h1>BAR DO BILL</h1>
+	<!-- <h1>BAR DO BILL</h1> -->
 
 	<nav>
 		<button on:click={() => (tela = "cardapio")}>Cardápio</button>
