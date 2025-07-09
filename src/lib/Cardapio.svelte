@@ -1,17 +1,25 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { getCardapio, type prato } from "./Cardapio";
-    import { formatarValor } from "./Functions";
-
-    let pratos: prato[]|null = $state(null);
-    onMount(() => getCardapio().then(data => pratos = data.pratos))
+  import { getCardapio } from "./Cardapio";
+  import PratoCard from "./PratoCard.svelte";
 </script>
 
-<div class="container">
-    {#if pratos}
-        {#each pratos as prato}
-            <p>{ prato.nome }</p>
-            <p>{ formatarValor(prato.valor) }</p>
-        {/each}
-    {/if}
-</div>
+{#await getCardapio()}
+    <p>Carregando ...</p>
+{:then tipos}
+  <div class="cards">
+    {#each tipos as tipo}
+      <PratoCard tipo={ tipo } />
+    {/each}
+  </div>
+{:catch error}
+  <p class="error">Não foi possível carregar o cardápio</p>
+{/await}
+
+<style>
+  .cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
