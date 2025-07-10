@@ -1,25 +1,13 @@
 <script lang="ts">
 	import Cardapio from "./lib/Cardapio.svelte";
-	import Carrinho from "./lib/Carrinho.svelte";
-
-	let tela: "cardapio" | "carrinho" = "carrinho";
 </script>
 
 <header>
-	<!-- <h1>BAR DO BILL</h1> -->
-
-	<nav>
-		<button on:click={() => (tela = "cardapio")}>Cardápio</button>
-		<button on:click={() => (tela = "carrinho")}>Carrinho</button>
-	</nav>
+	<h1>BAR DO BILL</h1>
 </header>
 
 <main>
-	{#if tela == "cardapio"}
-		<Cardapio></Cardapio>
-	{:else if tela == "carrinho"}
-		<Carrinho></Carrinho>
-	{/if}
+	<Cardapio></Cardapio>
 </main>
 
 <style>
@@ -30,7 +18,6 @@
 		flex-direction: column;
 		justify-content: center;
 		position: sticky;
-		margin-bottom: 14px;
 	}
 
 	header h1 {
@@ -38,23 +25,10 @@
 		text-align: center;
 	}
 
-	nav {
-		display: flex;
-	}
-
-	nav button {
-		width: 100%;
-		border: 1px solid transparent;
-		padding: 0.6em 1.2em;
-		font-size: 1em;
-		font-weight: 500;
-		font-family: inherit;
-		cursor: pointer;
-	}
-
 	main {
 		display: flex;
 		justify-content: center;
 		width: 100%;
+		padding: 10px;
 	}
 </style>

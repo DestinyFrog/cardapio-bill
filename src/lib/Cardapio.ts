@@ -1,4 +1,5 @@
-const cardapio = {
+
+export const data = {
 	pratos: [
 		{
 			id: 1,
@@ -98,13 +99,12 @@ export interface TipoPrato {
 	pratos: Prato[];
 }
 
-export async function getCardapio(): Promise<TipoPrato[]> {
-	return cardapio.tipos.map((tipo) => {
-		const pratos = cardapio.pratos.filter(({ tipo: prato_tipo }) => prato_tipo === tipo.tipo);
+export const cardapio = data.tipos.map((tipo) => {
+	const pratos = data.pratos.filter(
+		({ tipo: prato_tipo }) => prato_tipo === tipo.tipo);
 
-		return {
-			...tipo,
-			pratos
-		};
-	});
-}
+	return {
+		...tipo,
+		pratos
+	};
+})
