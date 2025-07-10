@@ -1,4 +1,4 @@
-import { cardapio, data, type Prato } from "./Cardapio"
+import { data, type Prato } from "./Cardapio"
 
 export const carrinho: number[] = $state([])
 

@@ -4,9 +4,8 @@
 	import { tamanho_linha } from "./Configuracao"
 	import { formatarValor } from "./Functions"
 	import MenuCard from "./MenuCard.svelte"
-
-	let total = $derived( formatarValor( getTotal() ) )
-	let quantidade_pontos = $derived( tamanho_linha - 6 - total.toString().length )
+	import { data } from "./Cardapio.ts"
+	import { carrinho } from "./CarrinhoStore.svelte.ts"
 </script>
 
 <div class="cards">
@@ -15,7 +14,12 @@
 	{/each}
 
 	<h1>Total</h1>
-	<p class="total">Total { ".".repeat(quantidade_pontos) } { total }</p>
+	{#each carrinho as prato_id}
+		{@const prato = data.pratos.find(({id}) => id == prato_id) }
+		<p>+ { formatarValor(prato.valor) } | { prato.nome }</p>
+	{/each}
+
+	<p class="total">= { formatarValor( getTotal() ) } | Total</p>
 </div>
 
 <style>
@@ -24,6 +28,7 @@
 		display: flex;
 		flex-direction: column;
 		font-family: 'Courier New', Courier, monospace;
+		font-size: 11px;
 	}
 	
 	.total {

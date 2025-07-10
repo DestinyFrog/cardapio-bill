@@ -18,15 +18,14 @@
 
 <div class="menu-item">
 	<p>
-		{ prato.nome } {".".repeat(qtd_pontos)} { valor_formatado } | {quantidade.toString().padStart(2, "0")}x |
         <button class="button-act" onclick={() => adicionaCarrinho(prato)}>+</button>
         <button class="button-act" onclick={() => removeCarrinho(prato)}>-</button>
+		{ prato.nome } {".".repeat(qtd_pontos)} { valor_formatado }
 	</p>
 </div>
 
 <style>
 	.menu-item {
-        font-size: 16px;
         padding-bottom: 6px;
         text-align: left;
         width: 100%;
