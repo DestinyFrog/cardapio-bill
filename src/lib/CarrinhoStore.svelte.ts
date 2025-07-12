@@ -1,22 +1,48 @@
-import { data, type Prato } from "./Cardapio"
+import menu, { type Item } from "./Menu"
 
-export const carrinho: number[] = $state([])
-
-export function adicionaCarrinho(prato:Prato) {
-    carrinho.push(prato.id)
+interface ItemQuantidade extends Item {
+    quantidade: number
+    total: number
 }
 
-export function removeCarrinho(prato:Prato) {
-    const index = carrinho.indexOf(prato.id)
+class Carrinho {
+    private itens: number[]
 
-    if (index != -1) {
-        carrinho.splice(index, 1)
+	constructor() {
+        this.itens = $state([])
+    }
+
+	add(item: Item) {
+		this.itens.push(item.id)
+	}
+
+	remove(item: Item) {
+		const index = this.itens.indexOf(item.id)
+
+		if (index != -1) {
+			this.itens.splice(index, 1)
+		}
+	}
+
+	get total() {
+		return this.itens.reduce(
+			(total, prato_id) => total + menu.find(({ id }) => prato_id == id)!.preco,
+			0)
+	}
+
+    getItens(): ItemQuantidade[] {
+        const itens_ids = Array.from(new Set(this.itens))
+        return itens_ids.map((item_id) => {
+            const item = menu.find(({ id }) => id == item_id)!
+            const quantidade = this.itens.filter((id) => id == item_id).length
+
+            return {
+                ... item,
+                quantidade,
+                total: quantidade * item.preco
+            }
+        }).sort(({ id }) => id) as ItemQuantidade[]
     }
 }
 
-export function getTotal() {
-    return carrinho.reduce(
-        (total, prato_id) => total + data.pratos.find(
-            ({id}) => prato_id == id)!.valor, 0)
-
-}
+export const carrinho = $state(new Carrinho())
