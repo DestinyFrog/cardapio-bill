@@ -7,6 +7,11 @@
 	let color = "white"
 </script>
 
+<header>
+	<h1>BAR DO BILL</h1>
+	<a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank">Assis Valente, 214 - Jardim Pinhal, Guarulhos - SP</a>
+</header>
+
 <main>
 	<div class="menu menu-batata-frita">
 		<div class="menu-inside">
@@ -39,10 +44,32 @@
 <Total />
 
 <style>
+	header {
+		padding: 20px 0px;
+		margin-top: 10px;
+		font-family: "Montserrat", sans-serif;
+		font-style: normal;
+		font-weight: 600;
+		border-bottom: 2px solid white;
+		width: 100%;
+		margin-bottom: 10px;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.endereco {
+		margin-top: 3px;
+		color: white;
+	}
+
 	main {
 		width: 100%;
 		height: 100%;
-		padding-bottom: 300px;
+		max-width: 550px;
+		padding-bottom: 200px;
 	}
 
 	.menu {
