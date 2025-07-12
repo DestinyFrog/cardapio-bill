@@ -1,3 +1,4 @@
+import { formatarValor } from "./Functions"
 import menu, { type Item } from "./Menu"
 
 interface ItemQuantidade extends Item {
@@ -31,7 +32,8 @@ class Carrinho {
 	}
 
     getItens(): ItemQuantidade[] {
-        const itens_ids = Array.from(new Set(this.itens))
+        const itens_ids = [ ... new Set(this.itens) ]
+
         return itens_ids.map((item_id) => {
             const item = menu.find(({ id }) => id == item_id)!
             const quantidade = this.itens.filter((id) => id == item_id).length
@@ -41,7 +43,22 @@ class Carrinho {
                 quantidade,
                 total: quantidade * item.preco
             }
-        }).sort(({ id }) => id) as ItemQuantidade[]
+        }) as ItemQuantidade[]
+    }
+
+    private createWhatsappMessage() {
+        const itens = this.getItens()
+        const itens_msg = itens.map((item) =>
+            `- ${item.quantidade}x ${item.nome} | ${ formatarValor( item.total ) }`
+        )
+
+        return `Novo Pedido:\n${ itens_msg.join('\n') }\nTotal: ${ formatarValor( this.total ) }`
+    }
+
+    createLink() {
+        let mensagem = this.createWhatsappMessage()
+        let numero = import.meta.env.VITE_WHATSAPP_PEDIDO
+        return `https://wa.me/${ numero }?text=${ encodeURIComponent( mensagem ) }`
     }
 }
 

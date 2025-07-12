@@ -17,11 +17,7 @@
 		</div>
 	</div>
 
-	<aside class="transition-img">
-		<!-- <img class="img-espetinho" src="/static/espetinho_session.png" alt="foto espetinho" /> -->
-	</aside>
-
-	<div class="menu-espetinho">
+	<div class="menu menu-espetinho">
 		<div class="menu-inside">
 			<Title title="Espetinho" {color} />
 			{#each menuByTipos.get("espetinho")! as item}
@@ -30,7 +26,7 @@
 		</div>
 	</div>
 
-	<div class="menu-bebida">
+	<div class="menu menu-bebida">
 		<div class="menu-inside">
 			<Title title="Bebida" {color} />
 			{#each menuByTipos.get("bebida")! as item}
@@ -38,22 +34,24 @@
 			{/each}
 		</div>
 	</div>
-
-	<Total />
 </main>
+
+<Total />
 
 <style>
 	main {
 		width: 100%;
 		height: 100%;
+		padding-bottom: 300px;
 	}
 
-	.img-espetinho {
-		margin-top: -83px;
-		margin-bottom: -72px;
+	.menu {
+		display: flex;
+		width: 100%;
 	}
 
 	.menu-inside {
-		padding: 20px;
+		width: 100%;
+		padding: 12px;
 	}
 </style>
