@@ -9,7 +9,9 @@
 
 <header>
 	<h1>BAR DO BILL</h1>
-	<a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank">Assis Valente, 214 - Jardim Pinhal, Guarulhos - SP</a>
+	<a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank">
+		Assis Valente, 214 - Jardim Pinhal<br/>Guarulhos - SP
+	</a>
 </header>
 
 <main>
@@ -63,6 +65,7 @@
 	.endereco {
 		margin-top: 3px;
 		color: white;
+		text-align: center;
 	}
 
 	main {
