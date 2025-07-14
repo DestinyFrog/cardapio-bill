@@ -1,5 +1,8 @@
 <script lang="ts">
-	let { title, color = "black" }: {
+	let {
+		title,
+		color = "black"
+	}: {
 		title: string
 		color: string
 	} = $props()
@@ -7,7 +10,7 @@
 
 <div class="title">
 	<span style="border-color: {color}"></span>
-	<h1 style="color: {color}">{ title }</h1>
+	<h1 style="color: {color}">{@html title}</h1>
 	<span style="border-color: {color}"></span>
 </div>
 
@@ -17,9 +20,12 @@
 		flex-direction: row;
 		align-items: center;
 
-		font-family: "Comic Relief", system-ui;
-		font-weight: 400;
+		font-family: "Winky Rough", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: lighter;
 		font-style: normal;
+		
+		margin: 10px 0px;
 	}
 
 	.title span {
@@ -33,5 +39,6 @@
 		white-space: initial;
 		min-width: max-content;
 		text-align: right;
+		font-size: 2.5rem;
 	}
 </style>
