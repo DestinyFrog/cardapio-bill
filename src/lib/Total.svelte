@@ -2,99 +2,126 @@
 	import { carrinho } from "./CarrinhoStore.svelte"
 	import { cortarString, formatarValor } from "./Functions"
 
-	let total = $derived(carrinho.total)
-
-	let is_open = $state(false)
+	let itens = $derived(carrinho.getItens())
+	let minimizado = $state(true)
 </script>
 
 <footer>
-	<button class="btn-nota" onclick={ () => is_open = !is_open }>
-		<h2>Pedido</h2>
-	</button>
+	<div class="conta">
+		<button class="adesivo" onclick={() => (minimizado = !minimizado)}>Pedido</button>
 
-	{#if is_open}
-		<div class="conta">
-			{#each carrinho.getItens() as item}
-				<div class="menu-item">
-					<button class="action" onclick={() => carrinho.remove(item)}>-</button>
-					<span class="nome">{item.quantidade}x {cortarString(item.nome, 28)}</span>
-					<!-- <span class="line"></span> -->
-					<span class="preco">{formatarValor(item.total)}</span>
-				</div>
-			{/each}
+		<table>
+			<tbody>
+				{#if minimizado}
+					{#each itens as item}
+						<tr>
+							<td class="espaco"></td>
+							<td style="width: 30px">{item.quantidade}x</td>
+							<td style="width: 240px">{cortarString(item.nome, 34)}</td>
+							<td style="width: 40px" class="numerico">{formatarValor(item.preco * item.quantidade)}</td>
+						</tr>
+					{/each}
+				{:else}
+					<tr>
+						<td colspan="4" style="text-align: center">Ver Itens ...</td>
+					</tr>
+				{/if}
+			</tbody>
 
-			<div class="total menu-item">
-				<span class="nome">Total</span>
-				<!-- <span class="line"></span> -->
-				<span class="preco">{formatarValor(total)}</span>
-			</div>
-		</div>
+			<tfoot>
+				<tr>
+					<td colspan="2"></td>
+					<td>Total</td>
+					<td class="numerico">{formatarValor(carrinho.total)}</td>
+				</tr>
+			</tfoot>
+		</table>
 
-		{#if carrinho.getItens().length > 0}
-			<a class="btn-pedido" href={carrinho.createLink()} target="_blank">
-				Enviar Pedido
-			</a>
-		{/if}
-	{/if}
+		<a class="btn-pedido" href={carrinho.createLink()} target="_blank">Finalizar Pedido</a>
+	</div>
 </footer>
 
 <style scoped>
 	footer {
-		position: sticky;
-		bottom: 0;
-		right: 60px;
-		width: 100%;
+		background-color: hsl(65, 41%, 95%);
+		border: 3px solid #a6a9aa;
 
-		background-color: black;
-		z-index: 10;
+		position: fixed;
+		bottom: 0;
+		margin-top: 30px;
 	}
 
 	footer * {
 		font-family: "Edu NSW ACT Cursive", cursive;
 		font-optical-sizing: auto;
 		font-weight: lighter;
-		font-style: normal;
-		color: white;
 	}
 
-	.btn-nota {
-		width: 100%;
-		background-color: transparent;
-		border: 0;
+	.adesivo {
+		padding: 2px 30px;
+		background-color: #f8e790;
+		border: 1px solid #a6a9aa;
+		position: absolute;
+		left: 50%;
+		top: -6%;
+		transform: translate(-50%, -50%) rotate(2deg);
+		color: black;
+
+		font-style: normal;
+		font-size: 1rem;
 	}
 
 	.conta {
-		padding: 12px;
+		position: relative;
+		border-radius: 2px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 405px;
 	}
 
-	.total {
-		border-top: 2px solid white;
-		padding-top: 8px;
-		margin-top: 12px;
+	.conta::before {
+		content: "";
+		position: absolute;
+		height: 100%;
+		width: 2px;
+		border: 0;
+		background-color: red;
+
+		left: 50px;
 	}
 
-	.nome {
-		text-align: left;
-		width: 100%;
+	table {
+		min-width: 400px;
+		padding: 10px;
+	}
+
+	td {
+		font-style: italic;
+		font-size: 0.8rem;
+		color: black;
+
+		padding: 6px;
+		padding-bottom: 0;
+		margin-left: 40px;
+		border-bottom: 2px solid #9cbdd3;
+	}
+
+	.espaco {
+		width: 40px;
+	}
+
+	.numerico {
+		text-align: right;
 	}
 
 	.btn-pedido {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		width: 100%;
 		border: 0;
-		padding: 10px;
-
+		width: 90%;
+		text-align: right;
+		text-decoration: underline;
 		background-color: transparent;
-
-		text-decoration: none;
-		font-size: 1rem;
-
-		font-family: "Edu NSW ACT Cursive", cursive;
-		font-optical-sizing: auto;
-		font-weight: lighter;
-		font-style: normal;
+		color: black;
+		font-style: italic;
 	}
 </style>

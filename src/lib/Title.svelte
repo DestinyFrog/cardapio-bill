@@ -1,10 +1,8 @@
 <script lang="ts">
-	let {
-		title,
-		color = "black"
-	}: {
+	let { title, color = "white" }:
+	{
 		title: string
-		color: string
+		color?: string
 	} = $props()
 </script>
 
