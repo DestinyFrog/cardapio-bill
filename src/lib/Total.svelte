@@ -46,9 +46,9 @@
 		background-color: hsl(65, 41%, 95%);
 		border: 3px solid #a6a9aa;
 
-		position: fixed;
+		position: sticky;
 		bottom: 0;
-		margin-top: 30px;
+		margin-top: 40px;
 	}
 
 	footer * {

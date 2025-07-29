@@ -11,12 +11,11 @@
 	<div class="content">
 		<img class="logo" src="/static/logo.png" alt="logo" />
 
-		<div class="texto">
-			<h1>BAR DO BILL</h1>
-			<a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank">
-				Assis Valente, 214 - Jardim Pinhal<br />Guarulhos - SP
-			</a>
-		</div>
+		<!-- <div class="texto"> -->
+			<!-- <a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank"> -->
+				<!-- Assis Valente, 214 - Jardim Pinhal<br />Guarulhos - SP -->
+			<!-- </a> -->
+		<!-- </div> -->
 	</div>
 
 	<div class="column-triangle-horiz"></div>
@@ -25,30 +24,30 @@
 <main>
 	<div class="menu">
 		<div class="menu-inside">
-			<div class="menu-content">
-				<Title title="Batata Frita" />
 
+			<Title title="Batata Frita" />
+
+			<div class="menu-content">
 				{#each menuByTipos.get("batata-frita")! as item}
 					<MenuItem {item} />
 				{/each}
-
-				<Title title="&#9830;" />
 			</div>
+
 		</div>
 	</div>
 
 	<div class="menu">
 		<div>
 			<div class="menu-inside">
-				<div class="menu-content">
-					<Title title="Espetinho" />
 
+				<Title title="Espetinho" left />
+
+				<div class="menu-content">
 					{#each menuByTipos.get("espetinho")! as item}
 						<MenuItem {item} />
 					{/each}
-
-					<Title title="&#9830;" />
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -56,15 +55,15 @@
 	<div class="menu">
 		<div>
 			<div class="menu-inside">
-				<div class="menu-content">
-					<Title title="Bebidas" />
 
+				<Title title="Bebidas" />
+
+				<div class="menu-content">
 					{#each menuByTipos.get("bebida")! as item}
 						<MenuItem {item} />
 					{/each}
-
-					<Title title="&#9830;" />
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -90,37 +89,34 @@
 		text-align: center;
 		display: flex;
 		flex-direction: row;
-		justify-content: space-between;
-		background-color: black;
-	}
-
-	.endereco {
-		margin-top: 3px;
-		color: white;
-		text-align: center;
+		justify-content: center;
 	}
 
 	.logo {
 		object-fit: contain;
-		max-height: 100px;
+		max-height: 160px;
 		margin-top: 10px;
-		width: 180px;
-	}
-
-	.texto {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		width: 280px;
 	}
 
 	main {
 		width: 100%;
 		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
 	}
 
 	.menu {
-		margin: 0px 20px;
+		max-width: 500px;
+		width: 90%;
+		border: 4px solid var(--main-menu-color);
+		border-radius: 10px;
+		margin: 10px 0px;
+	}
+
+	.menu-content {
+		padding: 10px;
 	}
 </style>

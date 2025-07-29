@@ -1,15 +1,26 @@
 <script lang="ts">
-	let { title, color = "white" }:
-	{
-		title: string
-		color?: string
+	let {
+		title, left = false
+	}: {
+		title: string,
+		left?: boolean
 	} = $props()
 </script>
 
 <div class="title">
-	<span style="border-color: {color}"></span>
-	<h1 style="color: {color}">{@html title}</h1>
-	<span style="border-color: {color}"></span>
+	{#if !left}
+		<div class="lines"
+			style="border-right: 4px solid var(--main-menu-color);">
+		</div>
+	{/if}
+
+	<h1>{@html title}</h1>
+
+	{#if left}
+		<div class="lines"
+			style="border-left: 4px solid var(--main-menu-color);">
+		</div>
+	{/if}
 </div>
 
 <style scoped>
@@ -23,7 +34,8 @@
 		font-weight: lighter;
 		font-style: normal;
 		
-		margin: 10px 0px;
+		border-bottom: 4px solid var(--main-menu-color);
+		color: var(--text-menu-color);
 	}
 
 	.title span {
@@ -38,5 +50,13 @@
 		min-width: max-content;
 		text-align: right;
 		font-size: 2.5rem;
+		padding: 0 20px;
+	}
+
+	.lines {
+		background-image: url('/static/lines.png');
+		background-size: 16px;
+		width: 100%;
+		height: 60px;
 	}
 </style>

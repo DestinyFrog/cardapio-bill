@@ -3,53 +3,48 @@
 	import { formatarValor } from "./Functions"
 	import type { Item } from "./Menu"
 
-	const {
-		item,
-		color = "white"
-	}: {
-		item: Item
-		color?: string
-	} = $props()
+	const { item }: { item: Item } = $props()
 </script>
 
-<div class="menu-item" style="color: {color}">
+<div class="menu-item">
 	<button
 		class="action"
-		style="color: {color}; border-color: {color}"
-		onclick={() => carrinho.add(item)}>+</button
-	>
+		onclick={() => carrinho.add(item)}>+</button>
 	<span class="nome">{item.nome}</span>
-	<span class="line" style="border-color: {color}"></span>
+	<span class="line"></span>
 	<span class="preco">{formatarValor(item.preco)}</span>
 </div>
 
 <style scoped>
 	.menu-item {
-		margin-top: 10px;
+		margin: 10px 3px 0px 3px;
+
 		display: flex;
-		align-items: center;
+		align-items: end;
 		width: 100%;
 		justify-content: space-between;
 		flex-wrap: nowrap;
-		margin: 8px 0px;
 
 		font-size: 0.85rem;
 		font-family: "Montserrat", sans-serif;
 		font-style: normal;
 		font-weight: 600;
-		color: white;
+		color: var(--text-menu-color);
 	}
 
 	.menu-item .nome {
 		white-space: initial;
-		min-width: max-content;
-		text-align: right;
+		text-align: left;
+		text-wrap: wrap;
+		width: 100%;
+		padding-bottom: 4px;
+		border-bottom: 2px dotted;
 	}
 
 	.menu-item .line {
 		margin: 2px 4px;
 		height: 14px;
-		width: 100%;
+		width: 0%;
 		border-bottom: 2px dotted;
 		box-sizing: border-box;
 	}
@@ -58,6 +53,7 @@
 		white-space: initial;
 		min-width: max-content;
 		text-align: right;
+		font-size: 1.1rem;
 	}
 
 	.menu-item .action {
@@ -65,8 +61,8 @@
 		height: 18px;
 
 		margin-right: 8px;
-		border: 2px solid white;
-		color: white;
+		border: 2px solid var(--text-menu-color);
+		color: var(--text-menu-color);
 		background-color: transparent;
 
 		display: flex;
