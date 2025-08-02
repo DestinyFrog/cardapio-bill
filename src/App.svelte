@@ -9,7 +9,7 @@
 	<div class="column-triangle-horiz"></div>
 
 	<div class="content">
-		<img class="logo" src="/static/logo.png" alt="logo" />
+		<img class="logo" src="/logo.png" alt="logo" />
 
 		<!-- <div class="texto"> -->
 			<!-- <a class="endereco" href="https://maps.app.goo.gl/BYZD375CyuCa4T149" target="_blank"> -->
@@ -103,6 +103,7 @@
 		width: 100%;
 		height: 100%;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		flex-wrap: wrap;

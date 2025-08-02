@@ -48,6 +48,7 @@
 
 		position: sticky;
 		bottom: 0;
+		margin: 0;
 		margin-top: 40px;
 	}
 
